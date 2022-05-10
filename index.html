@@ -26,11 +26,13 @@
       function checkChrome(){
         var varUA = navigator.userAgent.toLowerCase();
 
-        if (varUA.indexOf('chrome') > -1){
-          return 'chrome'
+        varUA = varUA.split(' ')
+
+        if (varUA[varUA.length - 1].startsWith('safari')){
+          return 'chrome';
         }
         else{
-          return 'other'
+          return 'other';
         }
       }
 
@@ -46,7 +48,7 @@
         }
       }
 
-      action_app()
+      action_app();
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
         dataUrl: "Build/test.data",
