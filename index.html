@@ -9,6 +9,30 @@
     <canvas id="unity-canvas" width=960 height=600 style="width: 960px; height: 600px; background: #231F20"></canvas>
     <script src="Build/test.loader.js"></script>
     <script>
+      function checkMobile(){
+        var varUA = navigator.userAgent.toLowerCase();
+
+        if (varUA.indexOf('android') > -1){
+          return 'android';
+        }
+        else if (varUA.indexOf('iphone') > -1 || varUA.indexOf("ipad") > -1 ||varUA.indexOf("ipod") > -1){
+          return 'ios';
+        }
+        else{
+          return 'other';
+        }
+      }
+
+      function action_app(){
+        var result_check = checkMobile();
+
+        if (result_check == 'android'){
+          location.href='intent://'+location.href.replace(/https?:\/\//i,'')+'#Intent;scheme=http;package=com.android.chrome;end';
+        }
+      }
+
+      action_app()
+
       createUnityInstance(document.querySelector("#unity-canvas"), {
         dataUrl: "Build/test.data",
         frameworkUrl: "Build/test.framework.js",
