@@ -24,9 +24,10 @@
       }
 
       function action_app(){
+        var Agent = navigator.userAgent.toLowerCase();
         var result_check = checkMobile();
 
-        if (result_check == 'android'){
+        if (result_check == 'android' && !Agent.includes("chrome")){
           location.href='intent://'+location.href.replace(/https?:\/\//i,'')+'#Intent;scheme=http;package=com.android.chrome;end';
         }
       }
